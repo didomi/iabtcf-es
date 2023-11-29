@@ -49,6 +49,62 @@ describe('TCString', (): void => {
 
   });
 
+  it('should unset purposeLegitimateInterests 3 if it is set', (): void => {
+
+    const tcModel = getTCModel();
+    tcModel.purposeLegitimateInterests.set(3);
+
+    expect(tcModel.purposeLegitimateInterests.has(3), 'purposeLegitimateInterests.has(3)').to.be.true;
+
+    const encodedString = TCString.encode(tcModel);
+    const newModel = TCString.decode(encodedString);
+
+    expect(newModel.purposeLegitimateInterests.has(3), 'newModel.purposeLegitimateInterests.has(3)').to.be.false;
+
+  });
+
+  it('should unset purposeLegitimateInterests 4 if it is set', (): void => {
+
+    const tcModel = getTCModel();
+    tcModel.purposeLegitimateInterests.set(4);
+
+    expect(tcModel.purposeLegitimateInterests.has(4), 'purposeLegitimateInterests.has(4)').to.be.true;
+
+    const encodedString = TCString.encode(tcModel);
+    const newModel = TCString.decode(encodedString);
+
+    expect(newModel.purposeLegitimateInterests.has(4), 'newModel.purposeLegitimateInterests.has(4)').to.be.false;
+
+  });
+
+  it('should unset purposeLegitimateInterests 5 if it is set', (): void => {
+
+    const tcModel = getTCModel();
+    tcModel.purposeLegitimateInterests.set(5);
+
+    expect(tcModel.purposeLegitimateInterests.has(5), 'purposeLegitimateInterests.has(5)').to.be.true;
+
+    const encodedString = TCString.encode(tcModel);
+    const newModel = TCString.decode(encodedString);
+
+    expect(newModel.purposeLegitimateInterests.has(5), 'newModel.purposeLegitimateInterests.has(5)').to.be.false;
+
+  });
+
+  it('should unset purposeLegitimateInterests 6 if it is set', (): void => {
+
+    const tcModel = getTCModel();
+    tcModel.purposeLegitimateInterests.set(6);
+
+    expect(tcModel.purposeLegitimateInterests.has(6), 'purposeLegitimateInterests.has(6)').to.be.true;
+
+    const encodedString = TCString.encode(tcModel);
+    const newModel = TCString.decode(encodedString);
+
+    expect(newModel.purposeLegitimateInterests.has(6), 'newModel.purposeLegitimateInterests.has(6)').to.be.false;
+
+  });
+
   it('should set all vendorsDisclosed in the GVL when isServiceSpecific is false', (): void => {
 
     const tcModel = getTCModel();
@@ -174,9 +230,9 @@ describe('TCString', (): void => {
 
     tcModel.purposeLegitimateInterests.forEach((value: boolean, id: number): void => {
 
-      if ( id === 1 && value ) {
+      if ( [1, 3, 4, 5, 6].indexOf(id) !== -1 && value ) {
 
-        // id 1 gets unset on encoding for legitimate interests
+        // id 1, 3, 4, q5 and 6 gets unset on encoding for legitimate interests
 
         expect(newModel.purposeLegitimateInterests.has(id), `purposeLegitimateInterests.has(${id})`).to.be.false;
 

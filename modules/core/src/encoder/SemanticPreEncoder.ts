@@ -20,9 +20,13 @@ export class SemanticPreEncoder {
       tcModel.publisherRestrictions.gvl = gvl;
 
       /**
-       * Purpose 1 is never allowed to be true for legitimate interest
+       * Purposes 1,3,4,5 and 6 is never allowed to be true for legitimate interest
        */
       tcModel.purposeLegitimateInterests.unset(1);
+      tcModel.purposeLegitimateInterests.unset(3);
+      tcModel.purposeLegitimateInterests.unset(4);
+      tcModel.purposeLegitimateInterests.unset(5);
+      tcModel.purposeLegitimateInterests.unset(6);
 
       /**
        * If a Vendor does not declare a purpose for consent or legitimate
