@@ -27,7 +27,7 @@
     "lint": "eslint `find src -name '*.ts'`"
   },
   "dependencies": {
-    "@didomi/iabtcf-core": "1.5.8"
+    "@didomi/iabtcf-core": "1.5.9"
   },
   "devDependencies": {
     "@types/node": "^17.0.18",

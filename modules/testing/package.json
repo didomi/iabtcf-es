@@ -26,7 +26,7 @@
     "lint": "eslint `find src -name '*.ts'`"
   },
   "peerDependencies": {
-    "@didomi/iabtcf-core": ">=1.5.8"
+    "@didomi/iabtcf-core": ">=1.5.9"
   },
   "dependencies": {
     "@types/sinon": "^10.0.11",
