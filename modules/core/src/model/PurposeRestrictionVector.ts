@@ -134,7 +134,7 @@ export class PurposeRestrictionVector extends Cloneable<PurposeRestrictionVector
    * @param {number[]|null|undefined} vendorsIds
    * @return {void}
    */
-  public restrictPurposeToLegalBasis(purposeRestriction: PurposeRestriction, vendorsIds: number[] = Array.from(this.gvl.vendorIds)): void {
+  public restrictPurposeToLegalBasis(purposeRestriction: PurposeRestriction, vendorsIds: number[] = [...this.gvl.vendorIds]): void {
 
     const hash: string = purposeRestriction.hash;
 
@@ -182,7 +182,7 @@ export class PurposeRestrictionVector extends Cloneable<PurposeRestrictionVector
 
       if (this.has(hash)) {
 
-        vendorIds = Array.from(this.map.get(hash));
+        vendorIds = [...this.map.get(hash)];
 
       }
 
@@ -192,7 +192,7 @@ export class PurposeRestrictionVector extends Cloneable<PurposeRestrictionVector
 
       this.map.forEach((vendorIds: Set<number>): void => {
 
-        Array.from(vendorIds).forEach((vendorId: number): void => {
+        [...vendorIds].forEach((vendorId: number): void => {
 
           vendorSet.add(vendorId);
 
@@ -200,7 +200,7 @@ export class PurposeRestrictionVector extends Cloneable<PurposeRestrictionVector
 
       });
 
-      vendorIds = Array.from(vendorSet);
+      vendorIds =[...vendorSet];
 
     }
 
@@ -266,7 +266,7 @@ export class PurposeRestrictionVector extends Cloneable<PurposeRestrictionVector
 
     this.map.forEach((purposeRestrictionVendorIds: Set<number>): void => {
 
-      const vendorIds = Array.from(purposeRestrictionVendorIds);
+      const vendorIds = [...purposeRestrictionVendorIds];
       result = Math.max(vendorIds[vendorIds.length - 1], result);
 
     });
@@ -311,7 +311,7 @@ export class PurposeRestrictionVector extends Cloneable<PurposeRestrictionVector
 
     });
 
-    return Array.from(purposeIds);
+    return [...purposeIds];
 
   }
 
@@ -363,7 +363,7 @@ export class PurposeRestrictionVector extends Cloneable<PurposeRestrictionVector
       this.map.forEach((vendorIds: Set<number>, hash: string): void => {
 
         const purposeRestriction: PurposeRestriction = PurposeRestriction.unHash(hash);
-        const vendors: number[] = Array.from(vendorIds);
+        const vendors: number[] = [...vendorIds];
 
         vendors.forEach((vendorId: number): void => {
 
