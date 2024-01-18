@@ -14,7 +14,7 @@ export class PurposeRestrictionVectorEncoder {
     // if the vector is empty we'll just return a string with just the numRestricitons being 0
     if (!prVector.isEmpty()) {
 
-      const gvlVendorIds = Array.from(prVector.gvl.vendorIds);
+      const gvlVendorIds = [...prVector.gvl.vendorIds];
 
       const gvlHasVendorBetween = (vendorId: number, nextVendorId: number): boolean => {
 
