@@ -119,7 +119,7 @@ describe('GVL', (): void => {
 
   });
 
-  it('should propogate all values with passed in json for version 2.2', (): void => {
+  it('should propagate all values with passed in json for version 2.2', (): void => {
 
     const gvl: GVL = new GVL(vendorlistJson22);
 
