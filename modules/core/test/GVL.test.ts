@@ -11,7 +11,7 @@ const vendorlistJson = require('@didomi/iabtcf-testing/lib/vendorlist/v2/vendor-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const translationJson = require('@didomi/iabtcf-testing/lib/vendorlist/v2/purposes-fr.json');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const vendorlistJson22 = require('@didomi/iabtcf-testing/testing/lib/vendorlist/v2.2/vendor-list.json');
+const vendorlistJson22 = require('@didomi/iabtcf-testing/lib/vendorlist/v2.2/vendor-list.json');
 
 describe('GVL', (): void => {
 
