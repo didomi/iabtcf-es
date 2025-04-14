@@ -18,6 +18,7 @@ export class ConsentLanguages {
     'FR',
     'GL',
     'HE',
+    'HI',
     'HR',
     'HU',
     'ID',
@@ -45,6 +46,7 @@ export class ConsentLanguages {
     'TR',
     'UK',
     'ZH',
+    'ZH-HANT',
   ]);
 
   public has(key: string): boolean {
