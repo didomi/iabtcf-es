@@ -23,6 +23,7 @@ describe('model->ConsentLanguages', (): void => {
     'FR',
     'GL',
     'HE',
+    'HI',
     'HR',
     'HU',
     'ID',
@@ -50,6 +51,7 @@ describe('model->ConsentLanguages', (): void => {
     'TR',
     'UK',
     'ZH',
+    'ZH-HANT',
   ];
 
   it('should have only these languages', (): void => {
