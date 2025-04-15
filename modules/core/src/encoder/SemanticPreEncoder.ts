@@ -61,8 +61,19 @@ export class SemanticPreEncoder {
                 /**
                  * Per June 2021 Policy change, Vendors declaring only Special Purposes must
                  * have their legitimate interest Vendor bit set if they have been disclosed.
-                 * This empty block ensures their LI bit remains set
+                 * This block ensures their LI bit remains set
                  */
+                vector.set(vendorId);
+
+              } else if (gvlVendorKey === 'legIntPurposes' && vendor['purposes'].length > 0 && vendor['legIntPurposes'].length === 0 && vendor['specialPurposes'].length > 0
+              ) {
+
+                /**
+                 * Per June 2021 Policy change, Vendors declaring only Special Purposes must
+                 * have their legitimate interest Vendor bit set if they have been disclosed.
+                 * This block ensures their LI bit remains set
+                 */
+                vector.set(vendorId);
 
               } else {
 
@@ -171,7 +182,7 @@ export class SemanticPreEncoder {
     }
 
     tcModel = tcModel.clone();
-    tcModel.consentLanguage = gvl.language.toUpperCase();
+    tcModel.consentLanguage = gvl.language.slice(0, 2).toUpperCase();
 
     if (options?.version > 0 && options?.version <= this.processor.length) {
 
