@@ -161,6 +161,22 @@ describe('Issues Reported', (): void => {
 
   });
 
+  it('441 dataCategories should be in the tcModel.gvl', async (): Promise<void> => {
+
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const vendorlist = JSON.parse(fs.readFileSync(__dirname + '/../../testing/lib/mjs/vendorlist/v2.2/vendor-list.json').toString());
+
+    const tcModel = new TCModel(new GVL(vendorlist));
+    tcModel.cmpId = makeRandomInt(2, 100);
+    tcModel.cmpVersion = makeRandomInt(1, 100);
+
+    await tcModel.gvl.readyPromise;
+
+    expect(tcModel.gvl.dataCategories[1].id, 'tcModel.gvl.dataCategories[1].id').to.equal(1);
+    expect(tcModel.gvl.dataCategories[1].name, 'tcModel.gvl.dataCategories[1].name').to.equal('IP addresses');
+
+  });
+
   it('481 TCString.encode writes given disclosed vendors correctly (vendor set using .set()', async (): Promise<void> => {
 
     // eslint-disable-next-line @typescript-eslint/no-var-requires

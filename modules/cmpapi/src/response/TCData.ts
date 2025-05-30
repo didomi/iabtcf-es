@@ -36,6 +36,7 @@ export class TCData extends Response {
 
     consents: BooleanVector | string;
     legitimateInterests: BooleanVector | string;
+    disclosedVendors: BooleanVector | string;
 
   };
 
@@ -84,12 +85,16 @@ export class TCData extends Response {
 
       const restrictions = bucket.get(this.tcString, this.createRestrictions.bind(this), tcModel.publisherRestrictions );
 
-      this.outOfBand = {
+      if (this.isServiceSpecific === false) {
 
-        allowedVendors: this.createVectorField(tcModel.vendorsAllowed, vendorIds),
-        disclosedVendors: this.createVectorField(tcModel.vendorsDisclosed, vendorIds),
+        this.outOfBand = {
 
-      };
+          allowedVendors: this.createVectorField(tcModel.vendorsAllowed, vendorIds),
+          disclosedVendors: this.createVectorField(tcModel.vendorsDisclosed, vendorIds),
+
+        };
+
+      }
 
       this.purpose = {
 
@@ -102,6 +107,7 @@ export class TCData extends Response {
 
         consents: this.createVectorField(tcModel.vendorConsents, vendorIds),
         legitimateInterests: this.createVectorField(tcModel.vendorLegitimateInterests, vendorIds),
+        disclosedVendors: this.createVectorField(tcModel.vendorsDisclosed, vendorIds),
 
       };
 
