@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {TCString, TCModel} from '../src';
+import {TCModel, TCString} from '../src';
 import {Segment} from '../src/model';
 import {TCModelFactory} from '@didomi/iabtcf-testing';
 
@@ -67,7 +67,9 @@ describe('TCString', (): void => {
     tcModel.supportOOB = false;
     tcModel.publisherCountryCode = 'DE';
 
-    const encodedString = TCString.encode(tcModel);
+    const encodedString = TCString.encode(tcModel, {
+      segments: [Segment.CORE, Segment.PUBLISHER_TC, Segment.VENDORS_DISCLOSED],
+    });
     const newModel = TCString.decode(encodedString);
 
     const vIds: number[] = Object.keys(tcModel.gvl.vendors).map((vId: string): number => parseInt(vId, 10));
@@ -89,7 +91,9 @@ describe('TCString', (): void => {
     tcModel.setAllVendorsDisclosed();
     tcModel.isServiceSpecific = true;
 
-    const encodedString = TCString.encode(tcModel);
+    const encodedString = TCString.encode(tcModel, {
+      segments: [Segment.CORE, Segment.PUBLISHER_TC, Segment.VENDORS_DISCLOSED],
+    });
     const newModel = TCString.decode(encodedString);
 
     const vIds: number[] = Object.keys(tcModel.gvl.vendors).map((vId: string): number => parseInt(vId, 10));
