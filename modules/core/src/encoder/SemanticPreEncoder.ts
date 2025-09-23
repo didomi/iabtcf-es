@@ -158,8 +158,6 @@ export class SemanticPreEncoder {
 
       });
 
-      tcModel.vendorsDisclosed.set(gvl.vendors);
-
       return tcModel;
 
     },
