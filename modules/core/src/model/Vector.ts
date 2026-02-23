@@ -256,4 +256,10 @@ export class Vector extends Cloneable<Vector> implements Iterable<IdBoolTuple> {
 
   }
 
+  public unsetAll<T>(intMap: IntMap<T>): void {
+
+    this.unset(intMap);
+
+  }
+
 }

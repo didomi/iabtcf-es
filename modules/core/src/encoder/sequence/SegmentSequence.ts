@@ -29,6 +29,7 @@ export class SegmentSequence implements SequenceVersionMap {
          * saving or the cmp api to surface.
          */
 
+        this['2'].push(Segment.VENDORS_DISCLOSED);
         this['2'].push(Segment.PUBLISHER_TC);
 
       } else {

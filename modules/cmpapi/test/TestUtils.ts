@@ -145,13 +145,13 @@ export class TestUtils {
     expect(tcData.purposeOneTreatment, 'purposeOneTreatment').to.equal(tcModel.purposeOneTreatment);
     expect(tcData.publisherCC, 'publisherCC').to.equal(tcModel.publisherCountryCode);
 
-    if (tcModel.vendorsAllowed.size) {
+    if (tcData.outOfBand && tcModel.vendorsAllowed.size) {
 
       this.checkVectorToBooleanVector('outOfBand.allowedVendors', tcModel.vendorsAllowed, tcData.outOfBand.allowedVendors as BooleanVector, vendors);
 
     }
 
-    if (tcModel.vendorsDisclosed.size) {
+    if (tcData.outOfBand && tcModel.vendorsDisclosed.size) {
 
       this.checkVectorToBooleanVector('outOfBand.disclosedVendors', tcModel.vendorsDisclosed, tcData.outOfBand.disclosedVendors as BooleanVector, vendors);
 
@@ -162,6 +162,7 @@ export class TestUtils {
 
     this.checkVectorToBooleanVector('vendor.consents', tcModel.vendorConsents, tcData.vendor.consents as BooleanVector, vendors);
     this.checkVectorToBooleanVector('vendor.legitimateInterests', tcModel.vendorLegitimateInterests, tcData.vendor.legitimateInterests as BooleanVector, vendors);
+    this.checkVectorToBooleanVector('vendor.disclosedVendors', tcModel.vendorsDisclosed, tcData.vendor.disclosedVendors as BooleanVector, vendors);
 
     this.checkVectorToBooleanVector('specialFeatureOptins', tcModel.specialFeatureOptins, tcData.specialFeatureOptins as BooleanVector);
 
