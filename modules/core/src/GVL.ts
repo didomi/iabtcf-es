@@ -2,10 +2,9 @@ import {Cloneable} from './Cloneable.js';
 import {GVLError} from './errors/index.js';
 import {Json} from './Json.js';
 import {ConsentLanguages, IntMap} from './model/index.js';
-import {ByPurposeVendorMap, Declarations, Feature, IDSetMap, Purpose, Stack, Vendor, VendorList, DataCategory} from './model/gvl/index.js';
+import {ByPurposeVendorMap, Declarations, Feature, IDSetMap, Purpose, Stack, Vendor, VendorList, DataCategory, StandardTexts} from './model/gvl/index.js';
 import {DataRetention} from './model/gvl/DataRetention';
 import {VendorUrl} from './model/gvl/VendorUrl';
-import {StandardTexts} from './model/gvl/StandardTexts';
 
 export type VersionOrVendorList = string | number | VendorList;
 type PurposeOrFeature = 'purpose' | 'feature';
