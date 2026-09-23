@@ -2,7 +2,7 @@ import {Cloneable} from './Cloneable.js';
 import {GVLError} from './errors/index.js';
 import {Json} from './Json.js';
 import {ConsentLanguages, IntMap} from './model/index.js';
-import {ByPurposeVendorMap, Declarations, Feature, IDSetMap, Purpose, Stack, Vendor, VendorList, DataCategory} from './model/gvl/index.js';
+import {ByPurposeVendorMap, Declarations, Feature, IDSetMap, Purpose, Stack, StandardTexts, Vendor, VendorList, DataCategory} from './model/gvl/index.js';
 import {DataRetention} from './model/gvl/DataRetention';
 import {VendorUrl} from './model/gvl/VendorUrl';
 
@@ -228,6 +228,12 @@ export class GVL extends Cloneable<GVL> implements VendorList {
    */
   public dataCategories?: IntMap<DataCategory>;
 
+  /**
+   * @param {StandardTexts} TCF 2.4 standard texts published on the GVL
+   * (`standardTexts.features` is the mandatory Feature disclaimer)
+   */
+  public standardTexts?: StandardTexts;
+
   private lang_: string;
   private cacheLang_: string;
 
@@ -375,6 +381,7 @@ export class GVL extends Cloneable<GVL> implements VendorList {
         specialFeatures: this.specialFeatures,
         stacks: this.stacks,
         dataCategories: this.dataCategories,
+        standardTexts: this.standardTexts,
       });
 
     }
@@ -415,6 +422,7 @@ export class GVL extends Cloneable<GVL> implements VendorList {
       specialFeatures: this.cloneSpecialFeatures(),
       stacks: this.cloneStacks(),
       ...(this.dataCategories ? {dataCategories: this.cloneDataCategories()} : {}),
+      ...(this.standardTexts ? {standardTexts: {...this.standardTexts}} : {}),
       vendors: this.cloneVendors(),
     };
 
@@ -708,6 +716,12 @@ export class GVL extends Cloneable<GVL> implements VendorList {
     this.specialFeatures = gvlObject.specialFeatures;
     this.stacks = gvlObject.stacks;
     this.dataCategories = gvlObject.dataCategories;
+
+    if (gvlObject.standardTexts !== undefined) {
+
+      this.standardTexts = gvlObject.standardTexts;
+
+    }
 
     if (this.isVendorList(gvlObject)) {
 

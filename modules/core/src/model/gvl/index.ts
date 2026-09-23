@@ -7,6 +7,7 @@ export * from './GVLMapItem.js';
 export * from './IDSetMap.js';
 export * from './Purpose.js';
 export * from './Stack.js';
+export * from './StandardTexts.js';
 export * from './Vendor.js';
 export * from './VendorList.js';
 export * from './DataCategory.js';
