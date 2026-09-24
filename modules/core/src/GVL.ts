@@ -419,10 +419,21 @@ export class GVL extends Cloneable<GVL> implements VendorList {
       specialPurposes: this.cloneSpecialPurposes(),
       features: this.cloneFeatures(),
       specialFeatures: this.cloneSpecialFeatures(),
-      ...(this.standardTexts ? {standardTexts: this.standardTexts} : {}),
+      ...(this.standardTexts ? {standardTexts: GVL.cloneStandardTexts(this.standardTexts)} : {}),
       stacks: this.cloneStacks(),
       ...(this.dataCategories ? {dataCategories: this.cloneDataCategories()} : {}),
       vendors: this.cloneVendors(),
+    };
+
+  }
+
+  private static cloneStandardTexts(standardTexts: StandardTexts): StandardTexts {
+
+    return {
+      features: standardTexts.features,
+      ...(standardTexts.purposes ? {purposes: standardTexts.purposes} : {}),
+      ...(standardTexts.specialPurposes ? {specialPurposes: standardTexts.specialPurposes} : {}),
+      ...(standardTexts.specialFeatures ? {specialFeatures: standardTexts.specialFeatures} : {}),
     };
 
   }
