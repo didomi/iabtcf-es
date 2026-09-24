@@ -2,7 +2,7 @@ import {Cloneable} from './Cloneable.js';
 import {GVLError} from './errors/index.js';
 import {Json} from './Json.js';
 import {ConsentLanguages, IntMap} from './model/index.js';
-import {ByPurposeVendorMap, Declarations, Feature, IDSetMap, Purpose, Stack, Vendor, VendorList, DataCategory} from './model/gvl/index.js';
+import {ByPurposeVendorMap, Declarations, Feature, IDSetMap, Purpose, Stack, Vendor, VendorList, DataCategory, StandardTexts} from './model/gvl/index.js';
 import {DataRetention} from './model/gvl/DataRetention';
 import {VendorUrl} from './model/gvl/VendorUrl';
 
@@ -228,6 +228,11 @@ export class GVL extends Cloneable<GVL> implements VendorList {
    */
   public dataCategories?: IntMap<DataCategory>;
 
+  /**
+   * @param {<StandardTexts>} a list of standardTexts
+   */
+  public standardTexts?: StandardTexts;
+
   private lang_: string;
   private cacheLang_: string;
 
@@ -375,6 +380,7 @@ export class GVL extends Cloneable<GVL> implements VendorList {
         specialFeatures: this.specialFeatures,
         stacks: this.stacks,
         dataCategories: this.dataCategories,
+        standardTexts: this.standardTexts,
       });
 
     }
@@ -413,9 +419,21 @@ export class GVL extends Cloneable<GVL> implements VendorList {
       specialPurposes: this.cloneSpecialPurposes(),
       features: this.cloneFeatures(),
       specialFeatures: this.cloneSpecialFeatures(),
+      ...(this.standardTexts ? {standardTexts: GVL.cloneStandardTexts(this.standardTexts)} : {}),
       stacks: this.cloneStacks(),
       ...(this.dataCategories ? {dataCategories: this.cloneDataCategories()} : {}),
       vendors: this.cloneVendors(),
+    };
+
+  }
+
+  private static cloneStandardTexts(standardTexts: StandardTexts): StandardTexts {
+
+    return {
+      features: standardTexts.features,
+      ...(standardTexts.purposes ? {purposes: standardTexts.purposes} : {}),
+      ...(standardTexts.specialPurposes ? {specialPurposes: standardTexts.specialPurposes} : {}),
+      ...(standardTexts.specialFeatures ? {specialFeatures: standardTexts.specialFeatures} : {}),
     };
 
   }
@@ -706,6 +724,7 @@ export class GVL extends Cloneable<GVL> implements VendorList {
     this.specialPurposes = gvlObject.specialPurposes;
     this.features = gvlObject.features;
     this.specialFeatures = gvlObject.specialFeatures;
+    this.standardTexts = gvlObject.standardTexts;
     this.stacks = gvlObject.stacks;
     this.dataCategories = gvlObject.dataCategories;
 

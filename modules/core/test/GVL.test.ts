@@ -5,6 +5,7 @@ import {Vendor} from '../src/model/gvl';
 import {IntMap} from '../src/model/IntMap';
 import {XMLHttpTestTools} from '@didomi/iabtcf-testing';
 import {Json} from '../src/Json';
+import {DataCategory} from '../src/model/gvl/DataCategory';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const vendorlistJson = require('@didomi/iabtcf-testing/lib/vendorlist/v2/vendor-list-v24.json');
@@ -144,6 +145,26 @@ describe('GVL', (): void => {
 
     assertPopulated(gvl, vendorlistJson22);
     assertPopulated(clone, vendorlistJson22);
+
+  });
+
+  it('should contain dataCategories and standardTexts for verion 2.4', (): void => {
+
+    const gvl: GVL = new GVL(vendorlistJson22);
+    expect(gvl.gvlSpecificationVersion).to.equal(3);
+    expect(gvl.tcfPolicyVersion).to.equal(5);
+
+    Object.keys(gvl.dataCategories).forEach((key: string): void => {
+
+      const dataCategory = gvl.dataCategories[key] as DataCategory;
+
+      expect(dataCategory.id).to.equal(Number(key));
+      expect(dataCategory.name).to.be.a('string');
+      expect(dataCategory.description).to.be.a('string');
+
+    });
+
+    expect(gvl.standardTexts?.features).to.be.a('string');
 
   });
 

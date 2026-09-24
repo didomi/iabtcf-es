@@ -86,4 +86,10 @@ describe('model->ConsentLanguages', (): void => {
 
   });
 
+  it('should return SR-LATN for the given language SR', (): void => {
+
+    expect(consentLanguages.parseLanguage('SR')).to.be.equal('SR-LATN');
+
+  });
+
 });
