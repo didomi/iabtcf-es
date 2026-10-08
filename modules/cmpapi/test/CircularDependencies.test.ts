@@ -1,6 +1,10 @@
 import {expect} from 'chai';
 import * as fs from 'fs';
 import * as path from 'path';
+import {fileURLToPath} from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * Guards against re-introducing circular dependencies (see issue #390). A cyclic
@@ -13,7 +17,7 @@ import * as path from 'path';
  */
 describe('Circular dependencies', (): void => {
 
-  const cjsRoot = path.resolve(process.cwd(), 'lib/cjs');
+  const cjsRoot = path.resolve(__dirname, '../lib/cjs');
 
   const walk = (dir: string, acc: string[] = []): string[] => {
 
