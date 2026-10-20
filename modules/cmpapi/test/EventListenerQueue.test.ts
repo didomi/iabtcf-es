@@ -4,6 +4,8 @@ import {TCStringFactory} from '@didomi/iabtcf-testing';
 import {TCString} from '@didomi/iabtcf-core';
 import {TCData} from '../src/response/TCData';
 import {CmpApiModel} from '../src/CmpApiModel';
+// Loaded for its side effect: registers GetTCDataCommand with EventListenerQueue.
+import '../src/command/GetTCDataCommand';
 
 describe('EventListenerQueue', (): void => {
 
